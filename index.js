@@ -1,4 +1,6 @@
 var request = require('request-promise');
+var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
 
 function fetchData(){
     var options = {
@@ -18,3 +20,15 @@ function fetchData(){
             console.log(err);
         });
 }
+
+// Connection URL
+var url = 'mongodb://127.17.0.2:27017/tvdemo';
+
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+  
+    console.log("Connected successfully to server");
+
+    db.close();
+});
