@@ -1,10 +1,15 @@
+<div class="md-padding"  flex layout-sm="column">
+    <input ng-model="vm.user" type="text" name="user" placeholder="User"/>
+    <input ng-model="vm.repository" type="text" name="repository" placeholder="Repository"/>
+    <button ng-click="vm.update()" name="validate">Valider</button>
+</div>
 <div class="md-padding" flex layout-sm="column" >
     <md-card>
         <md-card-content>
-            <h2 class="md-title">Number of users</h2>
+            <h2 class="md-title">Participations</h2>
         </md-card-content>
     </md-card>
-    <canvas id="doughnut" class="chart chart-doughnut" chart-data="vm.data" chart-labels="vm.labels"></canvas> 
+    <canvas id="line" class="chart chart-line" chart-data="vm.participationsData" chart-labels="vm.participationsLabels" chart-series="vm.series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"</canvas>  
 </div>
 <div class="md-padding" flex layout-sm="column" >
     <md-card>
@@ -12,14 +17,6 @@
             <h2 class="md-title">Commits</h2>
         </md-card-content>
     </md-card>
-    <canvas id="doughnut" class="chart chart-doughnut" chart-data="vm.data" chart-labels="vm.labels"></canvas> 
-</div>
-<div class="md-padding" flex layout-sm="column" >
-    <md-card>
-        <md-card-content>
-            <h2 class="md-title">Frequency</h2>
-        </md-card-content>
-    </md-card>
-    <canvas id="doughnut" class="chart chart-doughnut" chart-data="vm.data" chart-labels="vm.labels"></canvas> 
+    <canvas id="doughnut" class="chart chart-doughnut" chart-data="vm.commitsData" chart-labels="vm.commitsLabels"></canvas> 
 </div>
 

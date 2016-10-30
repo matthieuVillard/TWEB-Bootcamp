@@ -15,10 +15,14 @@
 		// Inject your dependencies as .$inject = ['$http', 'someSevide'];
 		// function Name ($http, someSevide) {...}
 
-		Page3.$inject = ['$http'];
+		Page3.$inject = ['$http', '$q'];
 
-		function Page3 ($http) {
-
+		function Page3 ($http, $q) {
+			return{
+				getAll: function () {
+					return $http.get('/api/req');
+				}
+			}
 		}
 
 })();

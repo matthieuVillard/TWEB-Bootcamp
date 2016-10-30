@@ -14,7 +14,7 @@ angular.module('page3')
 		$stateProvider
 			.state('page3', {
 				url:'/page3',
-				templateUrl: 'app/modules/page3/page3.html',
+				templateUrl: 'modules/page3/page3.html',
 				controller: 'Page3Ctrl',
 				controllerAs: 'vm'
 			});

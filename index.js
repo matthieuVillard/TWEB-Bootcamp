@@ -1,34 +1,61 @@
-var request = require('request-promise');
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-
-function fetchData(){
-    var options = {
-        uri: 'http://api.tvmaze.com/shows',
-        headers: {
-            'User-Agent': 'Request-Promise'
-        }, 
-        json: true
-    };
-
-    return request(options)
-        .then(function(shows){
-            console.log("I have received " + shows.length + " shows." );
-        })
-        .catch(function(err){
-            console.log("Something bas has happened");
-            console.log(err);
-        });
-}
+var express = require('express'); 
+var path = require('path');
+var router = express.Router();  
+var app = express(); 
+var multer = require('multer');
+var upload = multer();
+var fetch = require('node-fetch');
+var bodyParser = require('body-parser');
 
 // Connection URL
-var url = 'mongodb://127.17.0.2:27017/tvdemo';
+var url = 'mongodb://127.0.0.1:27017/git';
 
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-  
-    console.log("Connected successfully to server");
+MongoClient.connect(url, function () {
+    console.log("Connection to MongoDb");
+});
 
-    db.close();
+app.use(bodyParser.json());
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/app/index.html'));
+});
+
+app.get('/repos/*', function (req, res) {
+    fetch('https://api.github.com' + req.url, {headers: {'Authorization': 'token 9d80e1036f77ddbdc3daeca7865637e5fb3caac7'}})
+    .then(function(response) {
+        return response.json();
+    }).then(function(json) {
+        res.json(json);
+    });
+});
+
+app.use(express.static('app'));
+app.use('/api', router);
+
+router.get('/req', function (req, res) {
+    MongoClient.connect(url, function (err, db) {
+        var collection = db.collection('request');
+        collection.find().sort({date:-1}).toArray(function (err, data) {
+            res.send(data);
+        });
+        db.close();
+    });
+});
+
+router.post('/req', upload.array(), function (req, res) {
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+    MongoClient.connect(url, function (err, db) {
+        var collection = db.collection('request');
+        collection.insert({user: req.body.user, repository: req.body.repository, date: new Date(), ip: ip})
+        res.json({ message: 'Done' });
+        db.close();
+
+    });
+});
+
+app.listen(process.env.PORT || 8080, function(){
+    console.log("Server listening");
 });

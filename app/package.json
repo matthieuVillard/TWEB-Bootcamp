@@ -1,0 +1,22 @@
+{
+  "name": "github-explorer",
+  "description": "TWEB Labo01",
+  "version": "0.0.1",
+  "author": "Bastien Clément, Matthieu Villard",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthieuVillard/TWEB-Bootcamp.git"
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/matthieuVillard/TWEB-Bootcamp#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-chart.js": "^1.0.3",
+    "angular-core": "0.0.5",
+    "angular-resource": "^1.5.8",
+    "angular-ui-router": "^0.3.1"
+  }
+}
