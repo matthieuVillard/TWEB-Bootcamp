@@ -1,6 +1,6 @@
 # TWEB-Bootcamp
 Authors:
-- [Batien Clément](https://github.com/galedric)
+- [Bastien Clément](https://github.com/galedric)
 - [Matthieu Villard](https://github.com/matthieuVillard)
 
 [**Landing page**](https://matthieuvillard.github.io/TWEB-Bootcamp/)<br/>
