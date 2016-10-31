@@ -9,6 +9,9 @@ var upload = multer();
 var fetch = require('node-fetch');
 var bodyParser = require('body-parser');
 
+// Due to the fact we have some common work with the group of Loïc Serafin and Julien Leroy, and as we had some issues with the server,
+// there can be some similarity with their files because they inspired us.
+
 // Connection URL
 var url = 'mongodb://127.0.0.1:27017/git';
 

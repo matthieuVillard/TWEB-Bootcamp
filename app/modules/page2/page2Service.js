@@ -23,20 +23,21 @@
             var repository;
 
             return {
-                getUser: function () {
-                    return user;
-                },
-
-                getRepository: function () {
-                    return repository;
-                },
 
                 setUser: function (newUser) {
                     user =  newUser;
                 },
 
+                getUser: function () {
+                    return user;
+                },
+
                 setRepository: function (newRepository) {
                     repository = newRepository;
+                },
+
+                getRepository: function () {
+                    return repository;
                 },
 
                 getCommits: function () {
